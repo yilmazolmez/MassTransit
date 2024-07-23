@@ -17,7 +17,10 @@ builder.Services.AddMassTransit(x =>
         //cfg.Host(configuration.GetConnectionString("RabbitMQ")); //LOCAL
     });
 });
-builder.Services.AddMassTransitHostedService();
+
+#region MassTransit 7.2 version
+//builder.Services.AddMassTransitHostedService();
+#endregion
 
 builder.Services.AddControllers();
 
