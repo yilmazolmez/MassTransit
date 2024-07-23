@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "lr3tlNes8+9PnOVZIgUqfipsZ047pWU++4m9SX59d4Y=",
+  "Source": "MassTransit.API",
+  "BasePath": "_content/MassTransit.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
