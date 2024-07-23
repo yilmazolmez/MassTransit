@@ -1,6 +1,23 @@
+using MassTransit;
+
 var builder = WebApplication.CreateBuilder(args);
 
+ConfigurationManager configuration = builder.Configuration;
 
+builder.Services.AddMassTransit(x =>
+{
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host(configuration.GetValue<string>("RabbitMQSettings:RabbitMQUri"), rabbitMQHostConfigurator =>
+        {
+            rabbitMQHostConfigurator.Username(configuration.GetValue<string>("RabbitMQSettings:RabbitMQUserName"));
+            rabbitMQHostConfigurator.Password(configuration.GetValue<string>("RabbitMQSettings:RabbitMQPassword"));
+        });
+
+        //cfg.Host(configuration.GetConnectionString("RabbitMQ")); //LOCAL
+    });
+});
+builder.Services.AddMassTransitHostedService();
 
 builder.Services.AddControllers();
 

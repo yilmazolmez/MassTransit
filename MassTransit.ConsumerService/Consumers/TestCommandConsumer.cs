@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MassTransit.ConsumerService.Consumers
 {
-    public class TestCommandConsumer : IConsumer<TestCommand>
+    public class TestCommandConsumer : IConsumer<ITestCommand>
     {
-        public Task Consume(ConsumeContext<TestCommand> context)
+        public Task Consume(ConsumeContext<ITestCommand> context)
         {
             var message = context.Message;
 
