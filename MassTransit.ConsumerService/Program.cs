@@ -6,27 +6,52 @@ using MassTransit.Contract.Constant;
 Microsoft.Extensions.Hosting.IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((hostContext, services) =>
     {
-        services.AddMassTransit(cfg =>
+
+        #region MassTransit 7.2 version
+        //services.AddMassTransit(cfg =>
+        //{
+        //    cfg.AddConsumer<TestCommandConsumer>();
+
+        //    cfg.AddBus(context => Bus.Factory.CreateUsingRabbitMq(configure =>
+        //    {
+        //        configure.Host(hostContext.Configuration.GetValue<string>("RabbitMQSettings:RabbitMQUri"), rabbitMQHostConfigurator =>
+        //        {
+        //            rabbitMQHostConfigurator.Username(hostContext.Configuration.GetValue<string>("RabbitMQSettings:RabbitMQUserName"));
+        //            rabbitMQHostConfigurator.Password(hostContext.Configuration.GetValue<string>("RabbitMQSettings:RabbitMQPassword"));
+        //        });
+
+        //        configure.ReceiveEndpoint(RabbitMQSettingsConst.TestCommandConsumerQueue, e =>
+        //        {
+        //            e.ConfigureConsumer<TestCommandConsumer>(context);
+        //            //e.PrefetchCount = 16;
+        //        });
+        //    }));
+        //});
+        //services.AddMassTransitHostedService();
+        #endregion
+
+
+        #region MassTransit 8.2 version
+        services.AddMassTransit(x =>
         {
-            cfg.AddConsumer<TestCommandConsumer>();
+            x.AddConsumer<TestCommandConsumer>();
 
-            cfg.AddBus(context => Bus.Factory.CreateUsingRabbitMq(configure =>
+            x.UsingRabbitMq((context, cfg) =>
             {
-                configure.Host(hostContext.Configuration.GetValue<string>("RabbitMQSettings:RabbitMQUri"), rabbitMQHostConfigurator =>
-                {
-                    rabbitMQHostConfigurator.Username(hostContext.Configuration.GetValue<string>("RabbitMQSettings:RabbitMQUserName"));
-                    rabbitMQHostConfigurator.Password(hostContext.Configuration.GetValue<string>("RabbitMQSettings:RabbitMQPassword"));
-                });
+                cfg.Host(hostContext.Configuration.GetValue<string>("RabbitMQSettings:RabbitMQUri"), rabbitMQHostConfigurator =>
+                   {
+                        rabbitMQHostConfigurator.Username(hostContext.Configuration.GetValue<string>("RabbitMQSettings:RabbitMQUserName"));
+                        rabbitMQHostConfigurator.Password(hostContext.Configuration.GetValue<string>("RabbitMQSettings:RabbitMQPassword"));
+                   });
 
-                configure.ReceiveEndpoint(RabbitMQSettingsConst.TestCommandConsumerQueue, e =>
+                cfg.ReceiveEndpoint(RabbitMQSettingsConst.TestCommandConsumerQueue, ep =>
                 {
-                    e.ConfigureConsumer<TestCommandConsumer>(context);
-                    //e.PrefetchCount = 16;
+                    ep.ConfigureConsumer<TestCommandConsumer>(context);
                 });
-            }));
+            });
         });
+        #endregion
 
-        services.AddMassTransitHostedService();
         services.AddHostedService<Worker>();
     })
     .Build();
