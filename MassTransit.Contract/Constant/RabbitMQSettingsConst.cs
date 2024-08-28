@@ -13,5 +13,7 @@ namespace MassTransit.Contract.Constant
 
 
         public static string TestCommandConsumerQueue { get; } = MassTransitServicesPrefix + nameof(TestCommandConsumerQueue);
+
+
     }
 }
