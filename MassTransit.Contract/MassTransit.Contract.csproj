@@ -7,8 +7,8 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<VersionPrefix>1.0.1</VersionPrefix>
-		<PackageId>Test.MassTransit.Contract-Test</PackageId>
+		<VersionPrefix>1.0.2</VersionPrefix>
+		<PackageId>Guid12311.MassTransit.Contract.Guid12311</PackageId>
 		<!-- Projenizin versiyonunu buradan yönetebilirsiniz -->
 		<Authors>Yılmaz Ölmez</Authors>
 		<Company>Yılmaz Ölmez Company</Company>
