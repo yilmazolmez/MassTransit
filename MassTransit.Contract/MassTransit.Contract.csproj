@@ -1,17 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-	  <VersionPrefix>1.0.1</VersionPrefix>
-	  
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-	
-  <ItemGroup>
-    <Folder Include="Events\" />
-    <Folder Include="Settings\" />
-  </ItemGroup>
+	<PropertyGroup>
+		<VersionPrefix>1.0.0</VersionPrefix>
+		<!-- Projenizin versiyonunu buradan yönetebilirsiniz -->
+		<Authors>Yılmaz Ölmez</Authors>
+		<Company>Yılmaz Ölmez Company</Company>
+		<RepositoryUrl>https://github.com/yilmazolmez/MassTransit</RepositoryUrl>
+		<!-- Eğer GitHub gibi bir VCS kullanıyorsanız -->
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<!-- Lisans türünü buraya ekleyin -->
+		<PackageProjectUrl>https://github.com/yilmazolmez/MassTransit</PackageProjectUrl>
+		<!-- Projenizin URL'si -->
+		<PackageDescription>Test Nuget Denemesidir</PackageDescription>
+		<PackageTags>masstransit, contract</PackageTags>
+		<!-- Proje ile ilgili anahtar kelimeler -->
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<!-- Build sırasında NuGet paketi oluşturur -->
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Folder Include="Events\" />
+		<Folder Include="Settings\" />
+	</ItemGroup>
 
 </Project>
